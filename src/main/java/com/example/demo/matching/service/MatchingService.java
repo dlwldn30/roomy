@@ -8,12 +8,14 @@ import com.example.demo.matching.mapper.CandidateProfileMapper;
 import com.example.demo.matching.mapper.MyProfileMapper;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.repository.UserRepository;
-import com.example.demo.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MatchingService {
@@ -23,11 +25,21 @@ public class MatchingService {
 
     public List<MatchingResultResponse> match(Long myUserId, Preferences preferences) {
 
-        User me = userRepository.findById(myUserId).orElseThrow();
+        log.info("Matching start - userId={}", myUserId);
 
-        List<User> candidates = userRepository.findAll().stream()
-                .filter(u -> !u.getId().equals(me.getId()))
-                .toList();
+        User me = userRepository.findById(myUserId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        int currentYear = Year.now().getValue();
+
+
+
+        List<User> candidates = userRepository.findCandidates(
+                myUserId,
+                preferences.getTargetGender()
+        );
+
+        log.info("Candidate count={}", candidates.size());
 
         MatchingRequest request = new MatchingRequest(
                 MyProfileMapper.from(me),
@@ -37,6 +49,11 @@ public class MatchingService {
                         .toList()
         );
 
-        return matchingClient.match(request);
+        try {
+            return matchingClient.match(request);
+        } catch (Exception e) {
+            log.error("Matching algorithm server error", e);
+            return List.of(); // fallback
+        }
     }
 }

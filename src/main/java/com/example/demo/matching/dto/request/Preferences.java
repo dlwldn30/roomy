@@ -9,7 +9,5 @@ import lombok.Getter;
 public class Preferences {
 
     private Gender targetGender;
-    private int minAge;
-    private int maxAge;
     private boolean preferNonSmoker;
 }
