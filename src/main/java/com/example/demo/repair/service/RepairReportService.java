@@ -4,6 +4,7 @@ import com.example.demo.repair.domain.RepairReport;
 import com.example.demo.repair.domain.RepairStatus;
 import com.example.demo.repair.domain.Severity;
 import com.example.demo.repair.dto.request.RepairReportCreateRequest;
+import com.example.demo.repair.dto.response.AnalysisResult;
 import com.example.demo.repair.dto.response.RepairAnalyzeResponse;
 import com.example.demo.repair.dto.response.RepairReportResponse;
 import com.example.demo.repair.repository.RepairReportRepository;
@@ -23,35 +24,27 @@ public class RepairReportService {
             RepairReportCreateRequest request,
             RepairAnalyzeResponse response
     ) {
-        var analysis = response.getAnalysis();
+        AnalysisResult analysis = response.getAnalysis();
 
-        // ✅ analysis가 null이어도 DB가 터지지 않도록 기본값 보장
-        String item = analysis != null ? analysis.getItem() : "UNKNOWN";
-        String issue = analysis != null ? analysis.getIssue() : "UNKNOWN";
-        Severity severity = analysis != null
-                ? Severity.valueOf(analysis.getSeverity())
-                : Severity.MEDIUM;
-        Integer priorityScore = analysis != null
-                ? analysis.getPriorityScore()
-                : 5;
-        String reasoning = analysis != null ? analysis.getReasoning() : null;
-        String description = analysis != null
-                ? analysis.getDescription()
-                : "AI 분석 결과를 불러오지 못했습니다.";
-
-        Long reportId = response.getNewReportId();
+        if (analysis == null) {
+            throw new IllegalStateException("AI analysis result is null for new report");
+        }
 
         RepairReport report = RepairReport.builder()
-                .id(reportId)
+                .id(response.getNewReportId()) // 알고리즘에서 내려준 ID
                 .floor(request.getFloor())
                 .roomNumber(request.getRoomNumber())
-                .item(item)
-                .issue(issue)
-                .severity(severity)
-                .priorityScore(priorityScore)
-                .reasoning(reasoning)
-                .description(description)
-                .imageUrl("storage/repair_images/" + reportId + ".jpg")
+
+                // 🔥 AI 분석 결과 매핑
+                .item(analysis.getItem())
+                .issue(analysis.getIssue())
+                .severity(Severity.valueOf(analysis.getSeverity()))
+                .priorityScore(analysis.getPriorityScore())
+                .reasoning(analysis.getReasoning())
+                .description(analysis.getDescription())
+
+                // 🔧 메타 정보
+                .imageUrl("storage/repair_images/" + response.getNewReportId() + ".jpg")
                 .reporterId(reporterId)
                 .status(RepairStatus.PENDING)
                 .build();

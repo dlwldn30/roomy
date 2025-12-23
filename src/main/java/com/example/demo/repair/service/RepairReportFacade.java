@@ -37,11 +37,12 @@ public class RepairReportFacade {
         RepairAnalyzeResponse response =
                 repairAnalyzeService.analyze(analyzeRequest);
 
+        // ✅ 신규 신고일 때만 저장
         if (Boolean.TRUE.equals(response.getIsNew())) {
             repairReportService.create(
                     request.getReporterId(),
                     request,
-                    response   // ✅ AI 결과 전체 전달
+                    response
             );
         }
 

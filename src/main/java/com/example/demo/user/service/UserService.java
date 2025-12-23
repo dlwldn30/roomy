@@ -19,8 +19,8 @@ public class UserService {
     // 생성
     public UserResponse create(UserCreateRequest request) {
         User user = User.builder()
-                .gender(request.getGender())
                 .name(request.getName())
+                .gender(request.getGender())
                 .birthYear(request.getBirthYear())
                 .kakaoId(request.getKakaoId())
                 .mbti(request.getMbti())
