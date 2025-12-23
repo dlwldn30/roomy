@@ -30,19 +30,23 @@ public class MatchingService {
         User me = userRepository.findById(myUserId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        List<User> candidates = userRepository.findCandidates(myUserId);
+        // ✅ 무조건 '나와 같은 성별'로 후보 조회
+        List<User> candidates = userRepository.findCandidatesByGender(
+                myUserId,
+                me.getGender()
+        );
 
-        log.info("Candidate count={}", candidates.size());
+        log.info("Candidate count(same gender)={}", candidates.size());
 
         MatchingRequest request = new MatchingRequest(
                 MyProfileMapper.from(me),
-                preferences,
+                preferences, // preferences는 알고리즘 점수 계산용
                 candidates.stream()
                         .map(CandidateProfileMapper::from)
                         .toList()
         );
 
-        // 🔥🔥🔥 여기서 알고리즘 서버로 나가는 JSON 찍는다 🔥🔥🔥
+        // 🔥 알고리즘 서버로 나가는 JSON 로그
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(request);
