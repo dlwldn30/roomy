@@ -15,8 +15,8 @@ public class RepairReportResponse {
     private String floor;
     private String roomNumber;
 
-    private RepairItem item;
-    private IssueType issue;
+    private String item;
+    private String issue;
     private Severity severity;
     private Integer priorityScore;
 
@@ -29,7 +29,6 @@ public class RepairReportResponse {
     public static RepairReportResponse from(RepairReport report) {
         return RepairReportResponse.builder()
                 .id(report.getId())
-                .building(report.getBuilding())
                 .floor(report.getFloor())
                 .roomNumber(report.getRoomNumber())
                 .item(report.getItem())

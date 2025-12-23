@@ -1,5 +1,6 @@
 package com.example.demo.repair.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -22,8 +23,6 @@ public class RepairReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
-    private String building;
 
     @Column(length = 10, nullable = false)
     private String floor;
@@ -31,13 +30,11 @@ public class RepairReport {
     @Column(name = "room_number", length = 20)
     private String roomNumber;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)
-    private RepairItem item;
+    private String item;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)
-    private IssueType issue;
+    private String issue;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -113,11 +113,10 @@ public class TestDataInitializer implements CommandLineRunner {
 
             repairReportRepository.save(
                     RepairReport.builder()
-                            .building("Dorm A")
                             .floor("3")
                             .roomNumber("305")
-                            .item(RepairItem.TOILET)
-                            .issue(IssueType.CLOGGED)
+                            .item("화장실")
+                            .issue("막힘")
                             .severity(Severity.MEDIUM)
                             .priorityScore(5)
                             .description("물이 내려가지 않고 역류합니다.")
@@ -130,11 +129,10 @@ public class TestDataInitializer implements CommandLineRunner {
 
             repairReportRepository.save(
                     RepairReport.builder()
-                            .building("Dorm A")
                             .floor("2")
                             .roomNumber("210")
-                            .item(RepairItem.SINK)
-                            .issue(IssueType.LEAKAGE)
+                            .item("싱크대")
+                            .issue("누수")
                             .severity(Severity.HIGH)
                             .priorityScore(8)
                             .description("세면대 아래에서 물이 계속 샙니다.")
@@ -147,11 +145,10 @@ public class TestDataInitializer implements CommandLineRunner {
 
             repairReportRepository.save(
                     RepairReport.builder()
-                            .building("Dorm B")
                             .floor("1")
                             .roomNumber(null)
-                            .item(RepairItem.LIGHT)
-                            .issue(IssueType.NOT_WORKING)
+                            .item("전등")
+                            .issue("오작동")
                             .severity(Severity.LOW)
                             .priorityScore(3)
                             .description("복도 조명이 켜지지 않습니다.")
@@ -164,11 +161,10 @@ public class TestDataInitializer implements CommandLineRunner {
 
             repairReportRepository.save(
                     RepairReport.builder()
-                            .building("Dorm B")
                             .floor("4")
                             .roomNumber("418")
-                            .item(RepairItem.DOOR)
-                            .issue(IssueType.BROKEN)
+                            .item("문")
+                            .issue("파손")
                             .severity(Severity.CRITICAL)
                             .priorityScore(10)
                             .description("문이 잠기지 않아 외부 출입이 가능합니다.")
