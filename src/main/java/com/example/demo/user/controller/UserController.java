@@ -1,14 +1,12 @@
 package com.example.demo.user.controller;
 
-import com.example.demo.notice.common.ApiResponse;
+import com.example.demo.common.ApiResponse;
 import com.example.demo.user.dto.UserCreateRequest;
 import com.example.demo.user.dto.UserResponse;
 import com.example.demo.user.dto.UserUpdateRequest;
 import com.example.demo.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")

@@ -1,6 +1,6 @@
 package com.example.demo.notice.controller;
 
-import com.example.demo.notice.common.ApiResponse;
+import com.example.demo.common.ApiResponse;
 import com.example.demo.notice.dto.NoticeRequest;
 import com.example.demo.notice.dto.NoticeResponse;
 import com.example.demo.notice.service.NoticeService;

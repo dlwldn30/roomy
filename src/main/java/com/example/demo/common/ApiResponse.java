@@ -1,4 +1,4 @@
-package com.example.demo.notice.common;
+package com.example.demo.common;
 
 import lombok.Getter;
 

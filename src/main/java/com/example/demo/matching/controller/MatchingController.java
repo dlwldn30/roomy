@@ -3,7 +3,7 @@ package com.example.demo.matching.controller;
 import com.example.demo.matching.dto.request.Preferences;
 import com.example.demo.matching.dto.response.MatchingResultResponse;
 import com.example.demo.matching.service.MatchingService;
-import com.example.demo.notice.common.ApiResponse;
+import com.example.demo.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

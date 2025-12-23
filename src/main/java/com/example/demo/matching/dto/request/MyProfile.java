@@ -3,7 +3,11 @@ package com.example.demo.matching.dto.request;
 import com.example.demo.user.domain.DrinkingStyle;
 import com.example.demo.user.domain.Gender;
 import com.example.demo.user.domain.CleaningCycle;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@AllArgsConstructor
+@Getter
 public class MyProfile {
 
     private Long id;
