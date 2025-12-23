@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/matching")
+@RequestMapping("/matching")
 public class MatchingController {
 
     private final MatchingService matchingService;
