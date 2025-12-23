@@ -95,7 +95,7 @@ public class TestDataInitializer implements CommandLineRunner {
                             .wakeTime(10)
                             .snoring(false)
                             .cleaningCycle(CleaningCycle.DAILY)
-                            .drinkingStyle(DrinkingStyle.DAILY)
+                            .drinkingStyle(DrinkingStyle.RARELY)
                             .bugKiller(true)
                             .hobby("요리")
                             .selfDescription("정리정돈을 중요하게 생각합니다.")

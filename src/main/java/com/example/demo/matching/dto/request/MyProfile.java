@@ -1,11 +1,13 @@
 package com.example.demo.matching.dto.request;
 
 import com.example.demo.user.domain.*;
+import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Set;
 
+@Getter
 public class MyProfile {
 
     private Long id;

@@ -11,4 +11,7 @@ public class Preferences {
 
     private boolean preferNonSmoker;
     private boolean preferGoodAtBugs;
+    private boolean preferQuietSleeper;
+
+
 }
