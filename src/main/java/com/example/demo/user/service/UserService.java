@@ -68,7 +68,7 @@ public class UserService {
                 request.isBugKiller(),
                 request.getAbsentDays(),
                 request.getHobby(),
-                request.getSelfDescription()
+                request.getSelfDescription(),
                 request.getRoommateDescription()
         );
 
