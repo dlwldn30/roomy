@@ -20,10 +20,12 @@ public class TestDataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        // ===== USER 더미 =====
+        // =========================
+        // USER 더미 데이터
+        // =========================
         if (userRepository.count() == 0) {
 
-            User me = userRepository.save(
+            userRepository.save(
                     User.builder()
                             .gender(Gender.MALE)
                             .name("이지우")
@@ -104,7 +106,9 @@ public class TestDataInitializer implements CommandLineRunner {
             );
         }
 
-        // ===== REPAIR REPORT 더미 =====
+        // =========================
+        // REPAIR REPORT 더미 데이터
+        // =========================
         if (repairReportRepository.count() == 0) {
 
             repairReportRepository.save(
