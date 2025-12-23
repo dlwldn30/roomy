@@ -12,11 +12,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("""
         select u from User u
         where u.id <> :myUserId
-          and u.gender = :gender
     """)
     List<User> findCandidates(
-            Long myUserId,
-            Gender gender
+            Long myUserId
 
     );
 }

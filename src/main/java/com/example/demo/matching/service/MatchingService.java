@@ -35,8 +35,8 @@ public class MatchingService {
 
 
         List<User> candidates = userRepository.findCandidates(
-                myUserId,
-                preferences.getTargetGender()
+                myUserId
+
         );
 
         log.info("Candidate count={}", candidates.size());

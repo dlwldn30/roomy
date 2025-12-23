@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Preferences {
 
-    private Gender targetGender;
+
     private boolean preferNonSmoker;
+    private boolean preferGoodAtBugs;
 }
